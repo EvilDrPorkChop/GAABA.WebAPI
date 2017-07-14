@@ -16,6 +16,7 @@ using Microsoft.Owin.Security.OAuth;
 using GAABA.WebAPI.Models;
 using GAABA.WebAPI.Providers;
 using GAABA.WebAPI.Results;
+using System.Configuration;
 
 namespace GAABA.WebAPI.Controllers
 {
@@ -50,14 +51,14 @@ namespace GAABA.WebAPI.Controllers
         }
 
         public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
-
+        
         // GET api/Account/UserInfo
         [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
         [Route("UserInfo")]
         public UserInfoViewModel GetUserInfo()
         {
             ExternalLoginData externalLogin = ExternalLoginData.FromIdentity(User.Identity as ClaimsIdentity);
-
+            var id = ConfigurationManager.AppSettings["GoogleClientID"];
             return new UserInfoViewModel
             {
                 Email = User.Identity.GetUserName(),
