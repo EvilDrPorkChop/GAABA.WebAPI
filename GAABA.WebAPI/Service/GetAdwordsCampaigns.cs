@@ -40,23 +40,26 @@ namespace GAABA.WebAPI.Service
 
                     if (page != null && page.entries != null)
                     {
-                        foreach (Campaign campaign in page.entries)
+                        foreach (Campaign camp in page.entries)
                         {
                             campaignsList.Add(new AdwordsCampaignModel()
                             {
-                                Id = campaign.id,
-                                Name = campaign.name,
-                                Status = campaign.status
+                                Id = camp.id,
+                                Name = camp.name,
+                                Status = camp.status
                             });
                         }
                     }
 
-                    selector.paging.IncreaseOffset();
+                    //selector.paging.IncreaseOffset();                   
+                    //while (selector.paging.startIndex < page.totalNumEntries);
+                    while (selector.paging.numberResults > 0) ;
+                    return campaignsList;
 
-                } while (selector.paging.startIndex < page.totalNumEntries);
 
-                return campaignsList;
-            }
+
+
+
             catch (Exception e)
             {
                 throw new System.ApplicationException("Failed to retrieve campaigns", e);
@@ -64,3 +67,4 @@ namespace GAABA.WebAPI.Service
         }
     }
 }
+
