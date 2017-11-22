@@ -14,7 +14,7 @@ namespace GAABA.WebAPI
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
-            var a = new GetAdwordsCampaigns().Run(null);
+            //var a = new GetCampaigns().Run();
         }
     }
 }
