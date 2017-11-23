@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "bing";
+}
+
+<h2>Index</h2>
+
+@if (ViewBag.CampaignId != null)
+{
+    <h4>Added new Campaign</h4>
+    <p>Customer Id: @ViewBag.CustomerId</p>
+    <p>Account Id: @ViewBag.AccountId</p>
+    <p>Campaign Id: @ViewBag.CampaignId</p>
+
+    <p><a href="https://bingads.microsoft.com/campaign/campaigns?cid=@ViewBag.CustomerId&aid=@ViewBag.AccountId">View all of your campaigns in Bing Ads</a></p>
+}
+
+<p><b style="color: red">@ViewBag.Errors</b></p>
+
+<p><b style="color: red">@ViewBag.CampaignErrors</b></p>
