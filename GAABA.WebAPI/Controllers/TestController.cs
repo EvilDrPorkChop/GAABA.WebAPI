@@ -5,17 +5,17 @@ using System.Web;
 using System.Web.Mvc;
 using Google.Api.Ads.AdWords.Lib;
 using Google.Api.Ads.AdWords.v201705;
+using Newtonsoft.Json;
+
 
 namespace GAABA.WebAPI.Controllers
 {
     public class TestController : Controller
     {
         // GET: Test
-        public CampaignPage Index()
+        public string Index()
         {
-
             var user = new AdWordsUser();
-
             CampaignService campaignService = (CampaignService)user.GetService(AdWordsService.v201705.CampaignService);
 
             // Create the selector.
@@ -31,8 +31,7 @@ namespace GAABA.WebAPI.Controllers
 
             // Get the campaigns.
             page = campaignService.get(selector);
-
-            return page;
+            return JsonConvert.SerializeObject(page);
         }
 
         // GET: Test/Details/5
